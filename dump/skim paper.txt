@@ -1,0 +1,8 @@
+skim abstract
+look to see new things in paper - contributions
+
+intro - end : motivation and contribution				- v. imp for summarizing
+
+implementation - what they showed, how
+
+limitations.. 
