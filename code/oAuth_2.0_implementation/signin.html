@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Google oAuth Sign-In </title>
+        <meta name="google-signin-client_id" content="645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com">
+        
+        <script src="https://apis.google.com/js/platform.js" async defer></script>  <!-- this is a google sigin cdn from google oauth website-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- this is a jquery cdn from w3schools-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">         <!-- Latest compiled and minified CSS, CDN -->
+        <script src="script.js"> </script>      
+
+        <style>
+            .g-signin2{
+                margin-left:900px;
+                margin-top:200px; 
+            }
+            .data{
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="g-signin2" data-onsuccess="onSignIn"> </div>
+        <div class="data">
+            <p> Welcome!</p>
+            <p>Profile Details</p>
+            <img id="pic" class="img-circle" width="100" height="100"/>
+            <p></p>
+            <p>Logged Email ID</p>
+            <p id="email" class="alert alert-danger"></p>
+            <button onclick="signOut()" class="btn btn-danger">Sign Out</button>
+        </div>
+    </body>
+</html>
