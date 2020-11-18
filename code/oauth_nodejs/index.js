@@ -34,8 +34,12 @@ app.use(passport.session());
 
 app.set('view engine', 'ejs');
 
-app.get('/success', (req, res) => res.send(userProfile));
-app.get('/error', (req, res) => res.send("error logging in"));
+app.get('/success', (req, res) => {
+  res.send(userProfile)
+});
+app.get('/error', (req, res) => {
+  res.status(404).send("Authorisation Failed")
+});
 passport.serializeUser(function(user, cb) {
   cb(null, user);
 });
@@ -58,7 +62,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
       console.log('accessToken='+accessToken);
       console.log('refreshToken' +refreshToken)
-      userProfile=profile;
+      userProfile={profile, accessToken};
       return done(null, userProfile);
   }
 ));
@@ -74,4 +78,9 @@ app.get('/auth/google/callback',
   });
 
 
-app.get('/apitest', (req, res) => res.send("API Test"));
+app.get('/apitest', 
+  passport.authenticate('google', { scope : ['profile', 'email'] }),
+  function(req, res) {
+    // Successful authentication, redirect success.
+    res.redirect('/success');
+  });
