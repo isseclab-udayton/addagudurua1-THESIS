@@ -36,7 +36,7 @@ app.set('view engine', 'ejs');
 
 app.get('/success', (req, res) => {
   res.send(userProfile)
-});
+}); 
 app.get('/error', (req, res) => {
   res.status(404).send("Authorisation Failed")
 });
@@ -57,7 +57,7 @@ const GOOGLE_CLIENT_SECRET = 'our-google-client-secret';
 passport.use(new GoogleStrategy({
     clientID: '645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com',
     clientSecret: '818T7ojNwRa-TNt2HlZTPYOl',
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    callbackURL: "http://localhost:3000/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
       console.log('accessToken='+accessToken);
