@@ -1,0 +1,35 @@
+https://accounts.google.com/o/oauth2/v2/auth?
+ scope=https%3A//www.googleapis.com/auth/userinfo.profile&
+ access_type=offline&
+ include_granted_scopes=true&
+ response_type=code&
+ state=state_parameter_passthrough_value&
+ redirect_uri=http://localhost:3000/google/callback&
+ client_id=645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com				//working
+
+
+
+ oauth-session.sig=WrXAqtJLNFv31qiw3ft2xkxqGXI;		// to check if this is code?
+
+ code=4%2F0AY0e-g4M4AgNWSHNED_4FjnVMUZ5i5vlS15xu0T3fwA4FSuMecOaDthKT6jPTFpxUkQLug  		// to check if this is code
+
+
+
+ Request URL: https://accounts.google.com/signin/oauth/consent?authuser=3&part=AJi8hAMb7Z7-yiGtj7CBYjFET9imM2hcpD5VDYNv5MkO8SsnvyBYkX_GXK-4328Uwru-RFy6CUPrja5QqhNVLPPsz92oHNo14S8nqrAZwOgqI2OFlDmxP0ObZ1fEcEfadoB5EOGVBdrbP_aBwp3QlEQIFWFUHg-9_SqIO9VH2ollrzLOlSVXGQksm5-tP3l9DKij4NEy3-BMO-907IObEnWS7IERq-O4ydT1g0JTX6UTlz7KGKOO7eM3VG68x-fW6hm3wFJFalLd4P8-YU-iNXSL0hGSNVGtr86vL4WtMuB5Ue_ZGIMr8GbtA3yCpvrbqbu0JkJUQnIUI2lWUlIYqDBBgWo_tkrWS0khClokD-6r8QMVcUbPBYvr1n_0_eI9ngMVG-rajzPBSVVWZuKWSPDA9-wHnNU7_IsQiszMIAwC5m7Z9N9okjOD7zVTjqcglodRamxGhoa5&as=S1477376459%3A1612375131071290&pli=1&rapt=AEjHL4P0xwv748Ypw2947cL-m8Xa-wh6Sg1lF5zTtjKdL2gtmptw4STPNVoZzpnciVBwx86Vk5ooplW5V5C2A-FDtNUzCLwVtQ
+
+
+ Request URL: http://localhost:3000/google/callback?state=state_parameter_passthrough_value&code=4%2F0AY0e-g4M4AgNWSHNED_4FjnVMUZ5i5vlS15xu0T3fwA4FSuMecOaDthKT6jPTFpxUkQLug&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=3&prompt=consent
+
+ 4/2F0AY0e-g4M4AgNWSHNED_4FjnVMUZ5i5vlS15xu0T3fwA4FSuMecOaDthKT6jPTFpxUkQLug
+
+
+
+
+
+
+
+ Working URL request
+
+ http://localhost:3000/#access_token=4/2F0AY0e-g4M4AgNWSHNED_4FjnVMUZ5i5vlS15xu0T3fwA4FSuMecOaDthKT6jPTFpxUkQLug		// code response in URL (see above)
+
+ http://localhost:3000/apitest#access_token=ya29.a0AfH6SMDZS1TlAx7ICFyKABxTUGQf7TEkD4k6YT9j4eLm_0hK4UZiWLCYtCr-i9JHE4T10Jbm00ne8qhnf71IwhO92Ru3BRUzoebkCn8KHI16867hUCDPkLecpPur7u-2SLSxRWpsaOM5NAjF0PS7n-fTAxb1yd-mCjqje5KB6AY			// access_token generated on consent
