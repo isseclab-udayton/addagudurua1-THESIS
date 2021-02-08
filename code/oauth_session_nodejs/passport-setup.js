@@ -19,12 +19,16 @@ function onSignIn(googleUser) {
 
 passport.use(new GoogleStrategy({
     clientID: '645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com',
-    clientSecret: '818T7ojNwRa-TNt2HlZTPYOl',
+    clientSecret: 'iLo3UVXbf6OpAKIuWB-c9SzB',
     callbackURL: "http://localhost:3000/google/callback",
   },
   function(accessToken, refreshToken, profile, done) {
       console.log('Access token : ' +accessToken);
       userProfile = {profile, accessToken};
+
+      console.log('User profile is: ' +userProfile);
+      console.log('Refresh Token is: '+refreshToken)
+      
       return done(null, userProfile);
   }
 ));

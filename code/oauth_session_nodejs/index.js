@@ -62,7 +62,9 @@ var userProfile = googleUser.userProfile();
 app.get('/success', isLoggedIn, (req, res) => {
   // res.send(`Welcome User: ${req.user.userProfile()}`)
   // res.render('index.js', { username: req.user.username });
-  res.send(userProfile);
+  res.render('pages/data');
+  // res.send(userProfile.profile);   //use this for regular json output
+
 });
 
 
@@ -85,9 +87,15 @@ app.get('/logout', (req, res) => {
 app.get('/apitest', isLoggedIn, function(req, res) {
   // res.render('pages/data');
   // res.send(`Welcome User: ${userProfile.profile.emails[0].value}`);
-  if (userProfile.profile.emails[0].value == 'akshaisbox@gmail.com'){
+  if (userProfile.profile.emails[0].value == 'akshaisbox@gmail.com'){ 
   res.send(`Hi User: ${userProfile.profile.emails[0].value}`);
   }
+  else if (userProfile.profile.emails[0].value == 'addagudurua1@udayton.edu'){ 
+    // api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
+    res.send(`Hi User: ${userProfile.profile.emails[0].value}.... Only You can view this info`);
+    // res.send(`api.openweathermap.org/data/2.5/weather?q=London&appid={dc26ee0688871731de274548e3389779}`);
+
+    }
   else {
     res.send('Unauthorized!!');
   }
