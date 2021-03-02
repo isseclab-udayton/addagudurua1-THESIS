@@ -18,16 +18,16 @@ function onSignIn(googleUser) {
 }
 
 passport.use(new GoogleStrategy({
-    clientID: '645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com',
-    clientSecret: 'iLo3UVXbf6OpAKIuWB-c9SzB',
+    clientID: '40698350851-r6ka9quspf3kiaemoomrs409i4fo6is5.apps.googleusercontent.com',
+    clientSecret: 'JD6bp-D5T7NmMA1O3QJP6FB0',
     callbackURL: "http://localhost:3000/google/callback",
   },
   function(accessToken, refreshToken, profile, done) {
       console.log('Access token : ' +accessToken);
       userProfile = {profile, accessToken};
 
-      console.log('User profile is: ' +userProfile);
-      console.log('Refresh Token is: '+refreshToken)
+      // console.log('User profile is: ' +userProfile);
+      // console.log('Refresh Token is: '+refreshToken)
       
       return done(null, userProfile);
   }
