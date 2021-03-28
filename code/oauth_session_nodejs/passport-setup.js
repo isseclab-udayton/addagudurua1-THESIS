@@ -2,6 +2,7 @@ var passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // passport functions
+// serializing user info here and sending it to the cookie
 passport.serializeUser(function(user, done) {
     done(null, user);
   });
@@ -25,9 +26,9 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
       console.log('Access token : ' +accessToken);
       userProfile = {profile, accessToken};
-
+      
       // console.log('User profile is: ' +userProfile);
-      // console.log('Refresh Token is: '+refreshToken)
+      // console.log('Refresh Token is: '+refreshToken);
       
       return done(null, userProfile);
   }

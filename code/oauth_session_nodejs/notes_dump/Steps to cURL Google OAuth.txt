@@ -1,0 +1,25 @@
+Steps
+
+Step:1				//working
+https://accounts.google.com/o/oauth2/auth?client_id=645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com&redirect_uri=http://localhost:3000/google/callback&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&response_type=code
+
+
+Step:2				//error
+curl \
+–request POST \
+–data “code=4/0AY0e-g6fxN0ap2S7hvOCLFlyjCepRO4mGjiNaKmPcV7Efn3WdJK3-JV0e8I1fRN4MDPrjw&client_id=645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com&client_secret=iLo3UVXbf6OpAKIuWB-c9SzB&redirect_uri=urn:ietf:wg:oauth:2.0:oob&grant_type=authorization_code” \
+https://accounts.google.com/o/oauth2/token
+
+
+
+
+
+
+curl \
+–request POST \
+–data “code=4/0AY0e-g6fxN0ap2S7hvOCLFlyjCepRO4mGjiNaKmPcV7Efn3WdJK3-JV0e8I1fRN4MDPrjw&client_id=645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com&client_secret=iLo3UVXbf6OpAKIuWB-c9SzB&redirect_uri=http://localhost:3000/success&grant_type=authorization_code” \
+https://accounts.google.com/o/oauth2/token
+
+
+
+GET /userinfo/v2/me?access_token=ya29.A0AfH6SMAgyAnL3K_OFVLEYH5mD671SEurvvQc-XphTqTypnZV6FrVFeMlTqM2BdmEjfkXgoaC-6T3wlXvGUYCYydPxSvvKVZS7ecPOBWXXhfw65sPsi_wCeqUrhqBygDR0_YRvkX6iys72uW8igl-Qcf6VqYR HTTP/1.1
