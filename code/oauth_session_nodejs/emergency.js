@@ -8,37 +8,45 @@ const cors = require('cors')
 
 app.set('view engine', 'ejs');
 
-app.listen(4000, () => console.log(`App now listening on server: http://localhost:${4000}`))
+app.listen(4000, '0.0.0.0', function (){
+    console.log(`App now listening on server: http://localhost:${4000}`);
+    });
 
 
 var fs = require('fs');
-const jsonFile = './private/auth.json';
 
-app.get('/emergency?level=0', (req, res) => {
-    console.log("\nGET/ (200) Success");
+app.get('/', (req, res) => {
+    const jsonFile = './private/auth.json';
     var jsonData = fs.readFileSync(jsonFile);
     var jsonParsed = JSON.parse(jsonData);
     var value = jsonParsed.emergency_level;
-    console.log("The emergency value is: " + value);
+    console.log("The emergency value in JSON is: " + value);
     res.render('pages/emergency_view', { value: value });
-    res.end();
 });
 
 
 app.get('/emergency', function (req, res) {
-    const level = req.query.level; //set url parameter
-    if(level >2)
-    {
+    const level = req.query.level;
+    // console.log(level);
+    if (level > 2) {
         console.log("Error");
         return;
-        res.end();
     }
-    
+
+    const jsonFile = './private/auth.json';
     var jsonData = fs.readFileSync(jsonFile);
     var jsonParsed = JSON.parse(jsonData);
+
     const setVal = { ...jsonParsed, emergency_level: level };
     fs.writeFileSync('./private/auth.json', JSON.stringify(setVal));
+    console.log("\nSet Value Successful");
+    console.log("The value is now set to: ", +setVal.emergency_level);
     res.end();
+});
+
+
+app.get('/emergency?level', (req, res) => {
+    console.log("\nGET/ (200) Success");
 });
 
 
@@ -59,4 +67,3 @@ app.get('/emergency', function (req, res) {
 //     }
 //     res.end();
 // });
-

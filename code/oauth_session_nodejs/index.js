@@ -15,19 +15,18 @@ const { use } = require('passport');
 const { stringify } = require('querystring');
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 app.use(cookieParser());
 
 app.use(cors())
 
 app.set('view engine', 'ejs');
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
   extended: true
 }))
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(express.json());
 
 // For an actual app we should configure this with an expiration time, better keys, proxy and secure
 // my reference link : https://medium.com/dataseries/storing-sessions-in-express-apps-a67f29a09cc6
@@ -96,6 +95,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 })
 
+// this api only works for the people who are added in auth.json
 app.get('/apitest', isLoggedIn, function (req, res) {
 
   // https://www.tutorialkart.com/nodejs/nodejs-parse-json/
@@ -106,7 +106,7 @@ app.get('/apitest', isLoggedIn, function (req, res) {
       var jsonParsed = JSON.parse(jsonData);
       // var jsonString = JSON.stringify(jsonParsed);
 
-      console.log("The jsonParsed type is: ", typeof (jsonParsed));
+      // console.log("The jsonParsed type is: ", typeof (jsonParsed));
       // console.log("The userList is of type: ", typeof (jsonString));
 
       // https://www.codegrepper.com/code-examples/javascript/get+value+from+JSON.stringify
@@ -117,7 +117,7 @@ app.get('/apitest', isLoggedIn, function (req, res) {
 
         // check for loggedin user with fetched json email value and then break if found...else send to next if() condition below
         if (userProfile.profile.emails[0].value == fetchEmail) {
-          console.log("the fetched email is : ", + fetchEmail);
+          console.log("the fetched email is : ", fetchEmail);
           break;
         }
       }
@@ -125,7 +125,14 @@ app.get('/apitest', isLoggedIn, function (req, res) {
       // checking loggedin user with the json user list from fetchEmail..............API authorization here
       if (userProfile.profile.emails[0].value == fetchEmail) {
         // res.send("The client secret key is: ", + fetchSecretKey); // throws error as sending numbers is not valid using res.send()
-        res.status(200).send(("The client secret key is: ", + fetchSecretKey).toString());
+        fetchLevel = jsonParsed.emergency_level;
+        if (fetchLevel == 1) {
+          console.log("The emergency level in JSON is: ", +fetchLevel);
+          res.status(200).send(fetchLevel);
+        } else {
+          console.log("The value is not available at the moment. Please check back later!");
+        }
+        // res.status(200).send(("The client secret key is: ", +fetchSecretKey).toString());
 
       }
       else {
@@ -136,4 +143,7 @@ app.get('/apitest', isLoggedIn, function (req, res) {
 
 });
 
-app.listen(3000, () => console.log(`App now listening on server: http://localhost:${3000}`))
+
+app.listen(3000, '0.0.0.0', function () {
+  console.log(`App now listening on server: http://localhost:${3000}`);
+});
