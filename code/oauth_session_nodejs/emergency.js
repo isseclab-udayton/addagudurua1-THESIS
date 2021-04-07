@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     var jsonData = fs.readFileSync(jsonFile);
     var jsonParsed = JSON.parse(jsonData);
     var value = jsonParsed.emergency_level;
-    console.log("The emergency value in JSON is: " + value);
+    console.log("\nThe emergency value in JSON is: " + value);
     res.render('pages/emergency_view', { value: value });
 });
 
@@ -30,6 +30,7 @@ app.get('/emergency', function (req, res) {
     // console.log(level);
     if (level > 2) {
         console.log("Error");
+        res.send("Values must be greater than 0 and less than 3");
         return;
     }
 
@@ -41,6 +42,8 @@ app.get('/emergency', function (req, res) {
     fs.writeFileSync('./private/auth.json', JSON.stringify(setVal));
     console.log("\nSet Value Successful");
     console.log("The value is now set to: ", +setVal.emergency_level);
+    console.log("The page is now being redirected to '/' ");
+    res.redirect('/');
     res.end();
 });
 

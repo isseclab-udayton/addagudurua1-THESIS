@@ -115,25 +115,33 @@ app.get('/apitest', isLoggedIn, function (req, res) {
         fetchEmail = jsonParsed.userList[i]['email'];
         fetchSecretKey = jsonParsed.userList[i]['secretKey'];
 
+        var loggedInUser =  userProfile.profile.emails[0].value;
         // check for loggedin user with fetched json email value and then break if found...else send to next if() condition below
-        if (userProfile.profile.emails[0].value == fetchEmail) {
+        if (loggedInUser == fetchEmail) {
           console.log("the fetched email is : ", fetchEmail);
           break;
         }
       }
 
       // checking loggedin user with the json user list from fetchEmail..............API authorization here
-      if (userProfile.profile.emails[0].value == fetchEmail) {
+      if (loggedInUser == fetchEmail) {
         // res.send("The client secret key is: ", + fetchSecretKey); // throws error as sending numbers is not valid using res.send()
+        
+        //fetchlevel is the emergency_level value from the json file
         fetchLevel = jsonParsed.emergency_level;
-        if (fetchLevel == 1) {
-          console.log("The emergency level in JSON is: ", +fetchLevel);
-          res.status(200).send(fetchLevel);
-        } else {
-          console.log("The value is not available at the moment. Please check back later!");
-        }
-        // res.status(200).send(("The client secret key is: ", +fetchSecretKey).toString());
 
+        if(fetchLevel == null || fetchLevel == ""){
+          console.log("The emergency value is not available now! Please try later!");
+          res.send("The emergency value is not available now! Please try later!");
+        }
+        else if (fetchLevel != null && (fetchLevel >= 0 && fetchLevel < 3)) {
+          console.log("The emergency level in JSON is: ", +fetchLevel);
+          // res.status(200).send(fetchLevel);
+          res.render('pages/emergency_view', {value: fetchLevel});
+        } else {
+          console.log("The value in JSON is defined wrong. Contact admin! ");
+          res.send("The value in JSON is defined wrong. Contact admin! ");
+        }
       }
       else {
         res.send("You're unauthorized! Contact an Admin...");

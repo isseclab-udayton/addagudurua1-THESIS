@@ -34,22 +34,23 @@
     </h1>
 
     <form method="post" id="changeLevel">
-        <p id="showLevel"> <h4> The emergency level in JSON is: <%= value %> </h4> </p> 
+        <p id="showLevel"> <h4> The current emergency level in JSON is: <%= value %> </h4> </p> 
         <br>
-        <button id="button0" type="button" class="btn btn-success">Level 0</button>
+        <!-- <button id="button0" type="button" class="btn btn-success">Level 0</button> -->
     </form>
 
     <script type="text/javascript">
 
         $('#changeLevel').click(function () {
-            $.get('/');
-            console.log("fetch level from json");
+            $.get('/emergency');
+            console.log("fetch existing level from json");
         });
 
-        $('#button0').click(function () {
-            $.post('/emergency');
-            console.log("button clicked");
-        });
+        // $('#button0').click(function () {
+        //     $.post('/emergency');
+        //     console.log("button clicked to set value");
+        //     location.reload();
+        // });
 
     </script>
 
