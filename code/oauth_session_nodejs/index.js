@@ -28,6 +28,8 @@ app.use(express.urlencoded({
 // parse application/json
 app.use(express.json());
 
+module.exports = app;
+
 // For an actual app we should configure this with an expiration time, better keys, proxy and secure
 // my reference link : https://medium.com/dataseries/storing-sessions-in-express-apps-a67f29a09cc6
 app.use(cookieSession({
@@ -130,17 +132,13 @@ app.get('/apitest', isLoggedIn, function (req, res) {
         //fetchlevel is the emergency_level value from the json file
         fetchLevel = jsonParsed.emergency_level;
 
-        if(fetchLevel == null || fetchLevel == ""){
-          console.log("The emergency value is not available now! Please try later!");
-          res.send("The emergency value is not available now! Please try later!");
-        }
-        else if (fetchLevel != null && (fetchLevel >= 0 && fetchLevel < 3)) {
+        if (fetchLevel != null && fetchLevel == 1) {
           console.log("The emergency level in JSON is: ", +fetchLevel);
-          // res.status(200).send(fetchLevel);
-          res.render('pages/emergency_view', {value: fetchLevel});
+          // res.send(fetchSecretKey);
+          res.status(200).send(`The data is: ${fetchSecretKey}`).end();
         } else {
-          console.log("The value in JSON is defined wrong. Contact admin! ");
-          res.send("The value in JSON is defined wrong. Contact admin! ");
+          console.log("The data is not available now! Try later! ");
+          res.send("The data is not available now! Try later! ");
         }
       }
       else {

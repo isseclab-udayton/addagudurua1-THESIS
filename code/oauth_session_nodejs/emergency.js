@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express')
-var app = express()
-const cors = require('cors')
-
+var express = require('express');
+var app = express();
+const cors = require('cors');
+var jwtTokenRequire = require('./testjwt');
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 app.set('view engine', 'ejs');
@@ -15,7 +15,9 @@ app.listen(4000, '0.0.0.0', function (){
 
 var fs = require('fs');
 
-app.get('/', (req, res) => {
+jwtTokenRequire = jwtTokenRequire.ensureJwtToken();
+
+app.get('/', jwtTokenRequire, (req, res) => {
     const jsonFile = './private/auth.json';
     var jsonData = fs.readFileSync(jsonFile);
     var jsonParsed = JSON.parse(jsonData);
@@ -28,7 +30,7 @@ app.get('/', (req, res) => {
 app.get('/emergency', function (req, res) {
     const level = req.query.level;
     // console.log(level);
-    if (level > 2) {
+    if (level != 0 || level !=1) {
         console.log("Error");
         res.send("Values must be greater than 0 and less than 3");
         return;
@@ -51,22 +53,3 @@ app.get('/emergency', function (req, res) {
 app.get('/emergency?level', (req, res) => {
     console.log("\nGET/ (200) Success");
 });
-
-
-// app.post('/emergency', function (req, res) {
-
-//     var jsonData = fs.readFileSync(jsonFile);
-//     var jsonParsed = JSON.parse(jsonData);
-//     console.log("\nPOST emergency call");
-//     console.log("Emergency Level in JSON is:" +jsonParsed.emergency_level);
-//     // console.log(jsonParsed);
-//     if (jsonParsed.emergency_level == 1) {
-// const setVal = { ...jsonParsed, emergency_level: 0 };
-//         console.log("\nPOST/ (200) Success")
-//         console.log("The value is set now to: " +setVal.emergency_level);
-// fs.writeFileSync('./private/auth.json', JSON.stringify(setVal));
-//     } else {
-//         console.log("No changes needed");
-//     }
-//     res.end();
-// });
