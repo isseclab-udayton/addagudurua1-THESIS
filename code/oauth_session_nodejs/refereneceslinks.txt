@@ -1,3 +1,0 @@
-Render Html pages using nodejs
-https://stackoverflow.com/questions/4529586/render-basic-html-view?page=1&tab=votes#tab-top
-
