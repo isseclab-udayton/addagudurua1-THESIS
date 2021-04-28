@@ -1,0 +1,49 @@
+Google OAuth CURL command:
+
+
+curl -d "client_id=645021008168-h2c6vjdmfta6k6n7l62299mdhpb6e2c6.apps.googleusercontent.com&\client_secret=iLo3UVXbf6OpAKIuWB&\redirect_uri=http://localhost:3000/google/callback&\grant_type=authorization_code&\code=CODE" https://accounts.google.com/o/oauth2/token
+
+
+=========================================================================================================================================================================
+
+Copied as cURL from inspect element:
+
+curl 'http://localhost:3000/google/callback?code=4/0AY0e-g7zTRN6bTKbHuLRe12zKAt67BSSn4tNjj7k4fzeGE3jvBunjFdBcWVDyyU54T_Zeg&scope=email%20profile%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile%20openid&authuser=2&hd=udayton.edu&prompt=none' \
+  -H 'Connection: keep-alive' \
+  -H 'sec-ch-ua: "Chromium";v="88", "Google Chrome";v="88", ";Not A Brand";v="99"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'DNT: 1' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+  -H 'Sec-Fetch-Site: cross-site' \
+  -H 'Sec-Fetch-Mode: navigate' \
+  -H 'Sec-Fetch-User: ?1' \
+  -H 'Sec-Fetch-Dest: document' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Cookie: connect.sid=s%3AEzOC-YC5496NEZJ_HPHxQJ1IyF5B4smM.3X1s9XDoTtrjUix5mSWOGckF0swUID4enp8E%2FeTx7Yo' \
+  --compressed
+
+=========================================================================================================================================================================
+
+Copied as NodeJS fetch:
+
+
+  fetch("http://localhost:3000/google/callback?code=4/0AY0e-g7zTRN6bTKbHuLRe12zKAt67BSSn4tNjj7k4fzeGE3jvBunjFdBcWVDyyU54T_Zeg&scope=email%20profile%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile%20openid&authuser=2&hd=udayton.edu&prompt=none", {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+    "accept-language": "en-US,en;q=0.9",
+    "sec-ch-ua": "\"Chromium\";v=\"88\", \"Google Chrome\";v=\"88\", \";Not A Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "cross-site",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1",
+    "cookie": "connect.sid=s%3AEzOC-YC5496NEZJ_HPHxQJ1IyF5B4smM.3X1s9XDoTtrjUix5mSWOGckF0swUID4enp8E%2FeTx7Yo"
+  },
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors"
+});
